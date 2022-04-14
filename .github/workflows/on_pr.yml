@@ -19,6 +19,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Python 3.10.3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.3
+
       - name: Setup Poetry 1.1.13
         run: pip install poetry==1.1.13
 
