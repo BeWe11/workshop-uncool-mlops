@@ -4,8 +4,8 @@ stages:
     cmd: python src/get_data.py --output_folder outs/data
     deps:
     - path: src/get_data.py
-      md5: 7bfa3bef1595e102159e9018935a7248
-      size: 1962
+      md5: 2bab0f77d8718d40568d8659353a4515
+      size: 2062
     params:
       params.yaml:
         data:
@@ -20,29 +20,29 @@ stages:
           metrics_file: outs/data_metrics.json
     outs:
     - path: outs/data
-      md5: e6609e9fd1dd72964c759c912f7b4333.dir
-      size: 7965
-      nfiles: 150
+      md5: d8923329928f0763cc0e88e3a6a5f91e.dir
+      size: 7905
+      nfiles: 149
     - path: outs/data_metrics.json
-      md5: e49c5590d34bd47070579f50349aaad2
+      md5: 010dd51f7b855593b07963b41a6e75c9
       size: 67
   split-data:
     cmd: python src/split_data.py outs/data outs/split 0.2 outs/split_metrics.json
     deps:
     - path: outs/data
-      md5: e6609e9fd1dd72964c759c912f7b4333.dir
-      size: 7965
-      nfiles: 150
+      md5: d8923329928f0763cc0e88e3a6a5f91e.dir
+      size: 7905
+      nfiles: 149
     - path: src/split_data.py
       md5: 4257c1dd971b77407f5e86af0e0edd4d
       size: 2177
     outs:
     - path: outs/split
-      md5: 96b07e57c1175442b4bea586e02c02d1.dir
-      size: 11889
+      md5: f69b28e21c37c65d5faab65dbd9bf4e5.dir
+      size: 11803
       nfiles: 2
     - path: outs/split_metrics.json
-      md5: 72be7ff1bdce25bf11460afbdadfdbb9
+      md5: 47fb493cfe1e8a4bf427b742f5ae8084
       size: 176
   compute-data-metrics:
     cmd: python src/compute_data_metrics.py --input_folder outs/data --output_metrics_file
@@ -63,12 +63,12 @@ stages:
     cmd: python src/train.py outs/split outs/train
     deps:
     - path: outs/split
-      md5: 96b07e57c1175442b4bea586e02c02d1.dir
-      size: 11889
+      md5: f69b28e21c37c65d5faab65dbd9bf4e5.dir
+      size: 11803
       nfiles: 2
     - path: src/train.py
-      md5: 88cd88d5ff2ff67ee5764e24998f7d6f
-      size: 2522
+      md5: 29a6eba3d0d68ceaba83acf2b61b3afc
+      size: 2523
     params:
       params.yaml:
         data.labels:
@@ -82,25 +82,25 @@ stages:
           epochs: 10
     outs:
     - path: outs/train
-      md5: f109b46a4f6e88d55f586da0e32016fb.dir
-      size: 51986190
+      md5: 6e0d6f36a2af3a325b135f862b219bc1.dir
+      size: 51986035
       nfiles: 7
     - path: outs/train_metrics
-      md5: dc593d44da26402eb8c4d7ab6c4cbdef.dir
-      size: 2039
+      md5: 452ea2adc2077eeb1508b7d869f2b48f.dir
+      size: 2114
       nfiles: 10
     - path: outs/train_metrics.json
-      md5: 96e3206db2d54b8dc0a1d3eeb47d39fe
-      size: 350
+      md5: ed3a6f04188d43521c82e3efb4418235
+      size: 366
   eval:
     cmd: python src/eval.py outs/split/val.json outs/train outs/eval
     deps:
     - path: outs/split/val.json
-      md5: 8387f03159577b345e76a455dc565585
-      size: 2409
+      md5: aa6145c7aa9ce8e4dac922088d974a3d
+      size: 2310
     - path: outs/train
-      md5: f109b46a4f6e88d55f586da0e32016fb.dir
-      size: 51986190
+      md5: 6e0d6f36a2af3a325b135f862b219bc1.dir
+      size: 51986035
       nfiles: 7
     - path: src/eval.py
       md5: f733df5cfaaef682afcc65babff16c06
@@ -116,5 +116,5 @@ stages:
         - pipelines
     outs:
     - path: outs/eval/plots/confusion_matrix.json
-      md5: 220c5391945ab8226e43e04b924fad00
-      size: 2378
+      md5: c9c8d6bb088b918c328712fd082fb232
+      size: 2374
