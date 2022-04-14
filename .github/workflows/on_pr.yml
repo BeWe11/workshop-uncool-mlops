@@ -48,11 +48,11 @@ jobs:
         run: |
           dvc push
 
-      # - name: Create a P.R. with CML 
-      #   env:
-      #     REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     cml pr --auto-merge "dvc.lock" "outs/*.json" "outs/eval"  "outs/train_metrics"
+      - name: Create a P.R. with CML 
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cml pr --auto-merge "dvc.lock" "outs/*.json" "outs/eval"  "outs/train_metrics"
 
       - name: CML Report
         env:
