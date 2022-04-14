@@ -31,7 +31,9 @@ jobs:
         run: poetry check
 
       - name: Install python dependencies with Poetry
-        run: poetry install
+        run: |
+          poetry install
+          poetry config virtualenvs.create false
 
       - name: Run DVC pipeline
         env:
