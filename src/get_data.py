@@ -32,8 +32,10 @@ def get_data(output_folder):
 
     logger.info("Initializing Github")
     if os.environ.get("GITHUB_TOKEN"):
+        logger.info("With Token")
         g = Github(os.environ["GITHUB_TOKEN"])
     else:
+        logger.info("Without Token")
         g = Github()
 
     logger.info(f"Querying repo: {params['repo']}")
