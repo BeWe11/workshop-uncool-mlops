@@ -19,9 +19,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup
-        run: |
-          pip install -r requirements.txt
+      - name: Setup Poetry 1.1.13
+        run: pip install poetry==1.1.13
+
+      - name: Check pyproject.toml
+        run: poetry check
+
+      - name: Install python dependencies with Poetry
+        run: poetry install
 
       - name: Run DVC pipeline
         env:
